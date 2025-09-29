@@ -1,6 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
-import bruxosRoutes from "./src/routes/bruxosRoutes.js"
+import bruxosRoutes from "./src/routes/bruxosRoutes.js";
 
 const serverPort = process.env.PORT || 3000;
 const app = express();
@@ -11,8 +11,6 @@ dotenv.config();
 app.get("/", (req, res) => {
   res.send("🚀 Servidor funcionando...");
 });
-
-
 
 app.use("/bruxos", bruxosRoutes);
 

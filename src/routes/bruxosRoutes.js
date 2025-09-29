@@ -5,7 +5,7 @@ import {
   createBruxos,
   deleteBruxos,
   updateBruxos,
-} from "../controllers/bruxosController.js"
+} from "../controllers/bruxosController.js";
 
 const router = express.Router();
 

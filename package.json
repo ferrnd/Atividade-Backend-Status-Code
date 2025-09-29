@@ -7,7 +7,11 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon server.js"
   },
-  "keywords": ["Node", "Senai", "Nodemon"],
+  "keywords": [
+    "Node",
+    "Senai",
+    "Nodemon"
+  ],
   "author": "Fernando Santos",
   "license": "MIT",
   "description": "",

@@ -3,17 +3,19 @@ import dados from "../models/dados.js";
 const { bruxos } = dados;
 
 const getAllBruxos = (req, res) => {
-    const { casa } = req.query;
-    let resultado = bruxos;
+  const { casa } = req.query;
+  let resultado = bruxos;
 
-    if (casa) {
-      resultado = resultado.filter(c => c.casa.toLowerCase() === casa.toLowerCase());
-    }
+  if (casa) {
+    resultado = resultado.filter(
+      (c) => c.casa.toLowerCase() === casa.toLowerCase()
+    );
+  }
 
   res.status(200).json({
     total: resultado.length,
     data: resultado,
-    message: "Lista de bruxos(a) convocada com sucesso!"
+    message: "Lista de bruxos(a) convocada com sucesso!",
   });
 };
 
@@ -25,9 +27,9 @@ const getBruxosById = (req, res) => {
   if (bruxo) {
     res.status(200).json(bruxo);
   } else {
-      return res.status(404).json({ 
+    return res.status(404).json({
       success: false,
-      message: `Nenhum(a) bruxo(a) com o id ${id} foi encontrado(a) no Beco Diagonal! O id deve ser um número válido.`, 
+      message: `Nenhum(a) bruxo(a) com o id ${id} foi encontrado(a) no Beco Diagonal! O id deve ser um número válido.`,
     });
   }
 };
@@ -54,16 +56,13 @@ const createBruxos = (req, res) => {
   );
 
   if (nomeExiste) {
-    return res.status(409).json({ 
-    status: 409,
-    success: false,
-    message: "Já existe um bruxo com esse nome!",
-    suggestions: [
-        "Escolha outro nome para seu bruxo!",
-      ]
-  });
-}
-
+    return res.status(409).json({
+      status: 409,
+      success: false,
+      message: "Já existe um bruxo com esse nome!",
+      suggestions: ["Escolha outro nome para seu bruxo!"],
+    });
+  }
 
   const novosBruxos = {
     id: bruxos.length + 1,
@@ -72,7 +71,7 @@ const createBruxos = (req, res) => {
     ano: ano,
     casa: casa,
     varinha: varinha,
-    status: status
+    status: status,
   };
 
   bruxos.push(novosBruxos);
@@ -82,7 +81,6 @@ const createBruxos = (req, res) => {
     message: "Novo(a) bruxo(a) matriculado(a) em Hogwarts!",
     bruxo: novosBruxos,
   });
-
 };
 
 const deleteBruxos = (req, res) => {
@@ -92,8 +90,8 @@ const deleteBruxos = (req, res) => {
   if (!admin) {
     return res.status(403).json({
       success: false,
-      message: "Você não é administrador!"
-    })
+      message: "Você não é administrador!",
+    });
   }
   if (isNaN(id)) {
     return res.status(400).json({
@@ -129,7 +127,8 @@ const updateBruxos = (req, res) => {
   if (isNaN(idParaEditar)) {
     return res.status(400).json({
       success: false,
-      message: "Nenhum bruxo foi encontrado no Beco Diagonal! O id deve ser um número válido.",
+      message:
+        "Nenhum bruxo foi encontrado no Beco Diagonal! O id deve ser um número válido.",
     });
   }
 
@@ -150,7 +149,7 @@ const updateBruxos = (req, res) => {
           ...(ano && { ano: parseInt(ano) }),
           ...(casa && { casa }),
           ...(varinha && { varinha }),
-          ...(status && {status})
+          ...(status && { status }),
         }
       : bruxos
   );
@@ -164,4 +163,10 @@ const updateBruxos = (req, res) => {
   });
 };
 
-export { getAllBruxos, getBruxosById, createBruxos, deleteBruxos, updateBruxos };
+export {
+  getAllBruxos,
+  getBruxosById,
+  createBruxos,
+  deleteBruxos,
+  updateBruxos,
+};
