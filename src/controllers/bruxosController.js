@@ -144,7 +144,7 @@ const updateBruxos = (req, res) => {
   const bruxosAualizados = bruxos.map((bruxos) =>
     bruxos.id === idParaEditar
       ? {
-          ...carros,
+          ...bruxos,
           ...(nome && { nome }),
           ...(modelo && { modelo }),
           ...(ano && { ano: parseInt(ano) }),
