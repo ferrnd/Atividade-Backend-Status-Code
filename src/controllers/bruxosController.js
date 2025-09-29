@@ -87,6 +87,14 @@ const createBruxos = (req, res) => {
 
 const deleteBruxos = (req, res) => {
   const id = parseInt(req.params.id);
+
+  const { admin } = req.body;
+  if (!admin) {
+    return res.status(403).json({
+      success: false,
+      message: "Você não é administrador!"
+    })
+  }
   if (isNaN(id)) {
     return res.status(400).json({
       success: false,
